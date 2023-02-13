@@ -1,49 +1,51 @@
-/* 
-1. add event listener to the deposit button
-2. get deposit amount from the deposit input field
-2-5. Convert string deposit amount to a number type
-3. clear the deposit input field after getting the value
-4. get the previous deposit total 
-5. calculate new deposit total and set the value to the deposit total
-6. get current balance total
-7. calculate the new balance and set it to the balance total element
-*/
-
-// step-1: add click event handler with the deposit button
-document.getElementById('btn-deposit').addEventListener('click', function () {
-
-    // step-2: get the amount inside the deposit input field
-    // input field theke text pete hoile .value use korte hoy
-
-    const depositInput = document.getElementById('user-deposit');
-    
-    // const deposit = depositInput.value;
-
+// Function diya sob Input, Innertext gula nite hobe
+function getInputDepositById(inputDepositId) {
+    const depositInput = document.getElementById(inputDepositId);
     const newDeposit = depositInput.value;
-
-    //Input k Number e Convert Korte Hobe
     const newDepositAmount = parseFloat(newDeposit);
+    depositInput.value = '';
+    return newDepositAmount;
+}
 
-    //step-3: get the total Deposit amount
-    //Non-Input(Textarea, element) value gula paite .innerText use korte hoy
-
-    const depositTotalElement = document.getElementById('deposit-amount');
+function getTextAmountById(amountId) {
+    const depositTotalElement = document.getElementById(amountId);
     const oldDepositTotal = depositTotalElement.innerText;
     const oldDepositAmount = parseFloat(oldDepositTotal);
+    return oldDepositAmount;
+}
 
-    //step 4:Number add kore Total deposit Ber korte hobe
-    const currentDepositeTotal = oldDepositAmount + newDepositAmount;
-    depositTotalElement.innerText = currentDepositeTotal;
+//Tarpor Id Gula Diye Function Gulake Call korte hobe
+document.getElementById('btn-deposit').addEventListener('click', function () {
 
-    //step-5: Get Current Balance
-    const mainBalance = document.getElementById('account-amount');
-    const totalMainAmount = mainBalance.innerText;
-    const totalBalance = parseFloat(totalMainAmount)
+    // User Input Call Ditesi
+    const depositInput = getInputDepositById('user-deposit');
 
-    //Step-6: Calculate
-    const newMainBalance = totalBalance + newDepositAmount;
-    mainBalance.innerText = newMainBalance;
+    // Ager Deposit Value Koto Cilo Oita Call Ditesi
+    const depositTotalAmount = getTextAmountById('deposit-amount');
 
-    //step 7: Clear The Deposit inputField
-    depositInput.value ='';
+    // Ager Amount er Sate new deposit Joog Kortesi
+    const newDepositAmount = depositTotalAmount + depositInput;
+    console.log(newDepositAmount);
+
+// document.getElementById('btn-deposit').addEventListener('click', function () {
+
+//     const depositInput = document.getElementById('user-deposit');
+//     const newDeposit = depositInput.value;
+//     const newDepositAmount = parseFloat(newDeposit);
+
+//     const depositTotalElement = document.getElementById('deposit-amount');
+//     const oldDepositTotal = depositTotalElement.innerText;
+//     const oldDepositAmount = parseFloat(oldDepositTotal);
+
+//     const currentDepositeTotal = oldDepositAmount + newDepositAmount;
+//     depositTotalElement.innerText = currentDepositeTotal;
+
+//     const mainBalance = document.getElementById('account-amount');
+//     const totalMainAmount = mainBalance.innerText;
+//     const totalBalance = parseFloat(totalMainAmount)
+
+//     const newMainBalance = totalBalance + newDepositAmount;
+
+//     mainBalance.innerText = newMainBalance;
+//     depositInput.value ='';
 })
