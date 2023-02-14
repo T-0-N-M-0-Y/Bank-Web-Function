@@ -1,31 +1,26 @@
-// Function diya sob Input, Innertext gula nite hobe
-function getInputDepositById(inputDepositId) {
-    const depositInput = document.getElementById(inputDepositId);
-    const newDeposit = depositInput.value;
-    const newDepositAmount = parseFloat(newDeposit);
-    depositInput.value = '';
-    return newDepositAmount;
-}
-
-function getTextAmountById(amountId) {
-    const depositTotalElement = document.getElementById(amountId);
-    const oldDepositTotal = depositTotalElement.innerText;
-    const oldDepositAmount = parseFloat(oldDepositTotal);
-    return oldDepositAmount;
-}
-
-//Tarpor Id Gula Diye Function Gulake Call korte hobe
+//Id Gula Diye Function Gulake Call korte hobe
 document.getElementById('btn-deposit').addEventListener('click', function () {
 
     // User Input Call Ditesi
-    const depositInput = getInputDepositById('user-deposit');
+    const depositInput = getInputById('user-deposit');
 
     // Ager Deposit Value Koto Cilo Oita Call Ditesi
-    const depositTotalAmount = getTextAmountById('deposit-amount');
+    const previousDepositTotalAmount = getTextAmountById('deposit-amount');
 
     // Ager Amount er Sate new deposit Joog Kortesi
-    const newDepositAmount = depositTotalAmount + depositInput;
-    console.log(newDepositAmount);
+    const newDepositAmount = previousDepositTotalAmount + depositInput;
+
+    //joog Korar Por Jei Value Atese Oita Deposit total e Add kortesi display korar Jonne
+    setNewValueById('deposit-amount', newDepositAmount);
+
+    //Main balance e koto $ ase seta call kortesi
+    const mainBalanceAmount = getTextAmountById('account-amount');
+
+    //Ager Main Balance er sate Deposit er new amount jog kortesi
+    const newMainBalance = mainBalanceAmount + depositInput;
+
+    //Joog korar por ta main balance e show kortesi
+    setNewValueById('account-amount', newMainBalance)
 
 // document.getElementById('btn-deposit').addEventListener('click', function () {
 
